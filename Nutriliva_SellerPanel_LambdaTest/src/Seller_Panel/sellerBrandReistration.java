@@ -1,5 +1,6 @@
 package Seller_Panel;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -28,11 +30,10 @@ public class sellerBrandReistration{
 			driver.manage().window().maximize();
 		}
 		}
-	
 	@Test
 	public void testBasicInfo() throws InterruptedException {
 		
-		driver.get("http://sellernutriliva.cstechns.com/SupplierRegistration/9F08D035-41F0-4D12-8BCC-21E945135D35");
+		driver.get("http://sellernutriliva.cstechns.com/SupplierRegistration/6D967605-0771-4505-B003-F557BCE1F9F1");
 			driver.findElement(By.xpath("//input[@id='txtcompanyname']")).clear();
 			driver.findElement(By.xpath("//input[@id='txtcompanyname']")).sendKeys("ASK ");
 			
@@ -126,4 +127,11 @@ public class sellerBrandReistration{
 		  driver.findElement(By.id("btnsave")).click();
 			 Thread.sleep(5000);
 			 driver.findElement(By.xpath("//button[@class='confirm']")).click();
-			}}
+			}
+	@AfterClass
+	public void tearDown() {
+		driver.close();
+		
+	}
+
+}

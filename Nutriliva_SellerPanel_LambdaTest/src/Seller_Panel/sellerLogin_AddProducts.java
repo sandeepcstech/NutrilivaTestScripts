@@ -1,6 +1,6 @@
 package Seller_Panel;
 
-
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -16,36 +16,34 @@ import org.testng.annotations.Test;
 
 public class sellerLogin_AddProducts {
 	
-
-	 public static WebDriver driver;
-		@BeforeClass
-		public void setUp() {
-		String browser="Firefox";
-		if(browser.equals("Firefox"))
-		{
-			System.setProperty("webdriver.gecko.driver","C:\\drivers\\geckodriver.exe");
-			driver=new FirefoxDriver();
-		}
-		else if(browser.equals("Chrome"))
-		{
-			System.setProperty("webdriver.chrome.driver","C:\\drivers\\chromedriver.exe");
-			driver=new ChromeDriver();
-			driver.manage().window().maximize();
-		}
-		}
-
-		
+	public static WebDriver driver;
+	@BeforeClass
+	public void setUp() {
+	String browser="Chrome";
+	if(browser.equals("Firefox"))
+	{
+		System.setProperty("webdriver.gecko.driver","C:\\drivers\\geckodriver.exe");
+		driver=new FirefoxDriver();
+	}
+	else if(browser.equals("Chrome"))
+	{
+		System.setProperty("webdriver.chrome.driver","C:\\drivers\\chromedriver.exe");
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+	}
+	}	
 		@Test
-		public void sellerAddingProducts() throws InterruptedException {
-			
-			
+		public void sellerAddingProducts() throws InterruptedException {		
 			driver.get("http://sellernutriliva.cstechns.com/");
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
+			driver.manage().deleteAllCookies();
 			driver.findElement(By.linkText("Login")).click();
-			
-			driver.findElement(By.id("left_txtemail")).sendKeys("habewe1841@debsmail.com");
-			driver.findElement(By.id("left_txtpwd")).sendKeys("1234");
+			driver.findElement(By.id("left_txtemail")).sendKeys("sandeepkumar@cstech.in");
+			driver.findElement(By.id("left_txtpwd")).sendKeys("Xyz@123");
 			driver.findElement(By.id("signin_btnlogin")).click();
 //product 1 adding			
+			Thread.sleep(5000);
 			WebElement element = driver.findElement(By.xpath("//a[@href='supplierproductlist']"));
 			Actions action = new Actions(driver);
 			action.moveToElement(element).build().perform();
@@ -98,8 +96,10 @@ public class sellerLogin_AddProducts {
 			option5.selectByVisibleText("No Returns");
 			Thread.sleep(1000);
 			driver.findElement(By.linkText("NEXT")).click();
+			Thread.sleep(1000);
 			driver.findElement(By.id("Checkl41_1")).click();
 			driver.findElement(By.linkText("NEXT")).click();
+			Thread.sleep(1000);
 			driver.findElement(By.id("rbt_cod_0")).click();
 			driver.findElement(By.id("txt_Weight")).clear();
 			driver.findElement(By.id("txt_Weight")).sendKeys("1000");
@@ -170,11 +170,13 @@ public class sellerLogin_AddProducts {
 				option10.selectByVisibleText("3 days");
 				
 				driver.findElement(By.linkText("NEXT")).click();
-				
+				Thread.sleep(2000);
 				driver.findElement(By.id("Checkl22_0")).click();
+				Thread.sleep(1000);
 				driver.findElement(By.id("Checkl22_1")).click();
-				
+				Thread.sleep(1000);
 				driver.findElement(By.linkText("NEXT")).click();
+				Thread.sleep(1000);
 				driver.findElement(By.id("rbt_cod_0")).click();
 				driver.findElement(By.id("txt_Weight")).sendKeys("1000");
 				driver.findElement(By.xpath("//span[@class='button_03']//a[@id='LinkButton1']")).click();
@@ -263,12 +265,14 @@ public class sellerLogin_AddProducts {
 				option15.selectByVisibleText("10 days");
 				
 				driver.findElement(By.linkText("NEXT")).click();
-				
+				Thread.sleep(1000);
 				driver.findElement(By.id("Checkl22_0")).click();
+				Thread.sleep(1000);
 				driver.findElement(By.id("Checkl41_3")).click();
 				
 				
 				driver.findElement(By.linkText("NEXT")).click();
+				Thread.sleep(1000);
 				driver.findElement(By.id("rbt_cod_0")).click();
 				driver.findElement(By.id("txt_Weight")).sendKeys("1000");
 				driver.findElement(By.xpath("//span[@class='button_03']//a[@id='LinkButton1']")).click();
@@ -290,13 +294,12 @@ public class sellerLogin_AddProducts {
 				
 				driver.findElement(By.id("0chkdefaultval")).click();
 				driver.findElement(By.linkText("Submit")).click();
+				Thread.sleep(5000);
 			}
 		
 		@AfterClass
-		public void tearDown() {
+		public void tearDown() throws InterruptedException {
 			
-			driver.findElement(By.xpath("//a[contains(text()='Sign Out')]")).click();
 			driver.close();
-			driver.quit();
 		}
 }

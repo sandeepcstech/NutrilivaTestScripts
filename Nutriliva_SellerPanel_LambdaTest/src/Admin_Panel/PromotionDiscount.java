@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ public class PromotionDiscount {
 		}
 		
 		@Test
-		public void testPromoDiscount() {
+		public void testPromoDiscount() throws InterruptedException {
 			
 			driver.get("http://siteadminnutriliva.cstechns.com/");
 			driver.get("http://siteadminnutriliva.cstechns.com/");
@@ -58,8 +59,17 @@ public class PromotionDiscount {
 			driver.findElement(By.xpath("//input[@value='Flat']")).click();
 			
 			driver.findElement(By.id("txt_discount")).sendKeys("500");
+			Thread.sleep(2000);
 			driver.findElement(By.linkText("Submit")).click();
+			Thread.sleep(2000);
 			driver.findElement(By.linkText("Finish")).click();
+			Thread.sleep(2000);
+		}
+		@AfterClass
+		public void tearDown() throws InterruptedException {
+			driver.findElement(By.xpath("//a[@href='logout.aspx']")).click();
+			Thread.sleep(2000);
+			driver.close();
 		}
 	
 }

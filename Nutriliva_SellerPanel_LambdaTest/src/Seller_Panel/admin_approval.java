@@ -1,5 +1,6 @@
 package Seller_Panel;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +32,6 @@ public class admin_approval {
 			driver.manage().window().maximize();
 		}
 		}
-		
 		
 		@Test
 		public void testAdminApproval() throws InterruptedException {
@@ -75,7 +75,7 @@ public class admin_approval {
 			driver.findElement(By.id("0txtCommissionRate")).clear();
 			driver.findElement(By.id("0txtCommissionRate")).sendKeys("12.00");
 			driver.findElement(By.xpath("//img[@title='Update']")).click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			driver.switchTo().alert().accept();
 			Thread.sleep(2000);
 			driver.findElement(By.linkText("Logout")).click();
